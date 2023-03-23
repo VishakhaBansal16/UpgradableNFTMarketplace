@@ -1,10 +1,11 @@
+require("dotenv").config();
 require("@nomicfoundation/hardhat-toolbox");
-//require("@nomiclabs/hardhat-ethers");
+require("solidity-coverage");
 require("@openzeppelin/hardhat-upgrades");
 require("@nomiclabs/hardhat-etherscan");
-require("dotenv").config();
+
 module.exports = {
-  defaultNetwork: "goerli",
+  defaultNetwork: "hardhat",
   networks: {
     hardhat: {},
     goerli: {

@@ -37,7 +37,7 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
         bool sold;
     }
 
-    mapping(uint256 => MarketItem) private idToMarketItem;
+    mapping(uint256 => MarketItem) public idToMarketItem;
 
     event MarketItemCreated(
         address nftAddress,
@@ -60,7 +60,7 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
         platformFee = _platformFee;
        __Ownable_init();
        __ReentrancyGuard_init();
-   }
+    }
 
    function _authorizeUpgrade(address newImplementation)
         internal
@@ -178,6 +178,13 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
             "Cannot buy your own item"
         );
 
+        require(msg.value >= totalPrice, "Ether Balance is low");
+        
+        if(msg.value > totalPrice){
+            uint256 remainingBalance =  msg.value - totalPrice;
+            payable(msg.sender).transfer(remainingBalance);
+        }
+
         uint256 actualPrice = totalPrice - feeAmount;
 
         //transfer of eth from buyer to seller
@@ -235,20 +242,6 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
         }
         return items;
     }
-    
-    //Returns current itemId of createdMarketplaceItems
-    function currentItemId() public view returns(uint256){
-     uint256 itemcurrent = _itemIds.current();
-   // address nftSeller = idToMarketItem[itemcurrent].seller;
-    return itemcurrent;
-    }
-
-    //Returns nftOwner of current itemId of createdMarketplaceItems
-    function currentItemOwner() public view returns(address){
-     uint256 itemcurrent = _itemIds.current();
-    address _nftOwner = idToMarketItem[itemcurrent].nftOwner;
-    return _nftOwner;
-    }
    
     //Returns all items that function caller has purchased 
     function fetchMyNFTs() public view returns (MarketItem[] memory) {
@@ -298,7 +291,7 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
         return items;
     }
 
-    //Returns all items a user has created or listed
+    //Returns all items that func caller has created or listed
     function fetchItemsCreated() public view returns (MarketItem[] memory) {
         uint256 totalItemCount = _itemIds.current();
         uint256 itemCount = 0;
