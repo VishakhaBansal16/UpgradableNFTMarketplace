@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.0;
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, ReentrancyGuardUpgradeable {
+contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, ReentrancyGuardUpgradeable{
     using Counters for Counters.Counter;
     Counters.Counter private _itemIds;
     Counters.Counter private _itemsSold;
@@ -18,7 +18,6 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
     IERC721 public  nftContract;
     //Interface for ERC1155 NFTs 
     IERC1155 public  myNftContract;
-    address payable nftOwner;
     //set platform fee as 2.5% of nft price
     uint256 public  platformFee;
     address payable public platformWallet;
@@ -53,11 +52,14 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
         bool sold
     );
     
-    function initialize(address _nftContract, address _myNftContract,address _platformWallet, uint256 _platformFee) public initializer {
-        nftContract = IERC721(_nftContract);
-        myNftContract = IERC1155(_myNftContract);
-        platformWallet = payable(_platformWallet);
-        platformFee = _platformFee;
+    constructor() initializer {}
+    
+    function initialize(address nftContractAddress, address myNftContractAddress,address platformWalletAddress, uint256 platformFees) public initializer {
+        require(platformWalletAddress != address(0), "Invalid address");
+        nftContract = IERC721(nftContractAddress);
+        myNftContract = IERC1155(myNftContractAddress);
+        platformWallet = payable(platformWalletAddress);
+        platformFee = platformFees;
        __Ownable_init();
        __ReentrancyGuard_init();
     }
@@ -69,7 +71,7 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
     {}
    //Listing NFT
     function createMarketItem(uint256 tokenId, uint256 priceInWei, bool isErc721) public nonReentrant {
-        if( isErc721 == true){
+        if( isErc721){
             require(nftContract.ownerOf(tokenId) == msg.sender, "You must own the ERC721 token to list here");
         require(priceInWei > 0, "Price must be greater than 0");    
 
@@ -177,29 +179,35 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
             idToMarketItem[itemId].seller != msg.sender,
             "Cannot buy your own item"
         );
-
+  
+  idToMarketItem[itemId].nftOwner = msg.sender;
+        idToMarketItem[itemId].sold = true;
         require(msg.value >= totalPrice, "Ether Balance is low");
-        
-        if(msg.value > totalPrice){
+
+         if(msg.value > totalPrice){
             uint256 remainingBalance =  msg.value - totalPrice;
-            payable(msg.sender).transfer(remainingBalance);
+            uint256 amount = remainingBalance;
+            remainingBalance = 0;
+            payable(msg.sender).transfer(amount);
         }
 
         uint256 actualPrice = totalPrice - feeAmount;
-
+        uint256 actual_price = actualPrice;
+        actualPrice = 0;
         //transfer of eth from buyer to seller
-        payable(seller).transfer(actualPrice);
+        payable(seller).transfer(actual_price);
         //transfer of eth from buyer to platformWallet
-       payable(platformWallet).transfer(feeAmount);     
+        uint256 fee = feeAmount;
+        feeAmount = 0;
+       payable(platformWallet).transfer(fee);     
        
-       if(isERC721 == true){
+       if(isERC721){
         nftContract.safeTransferFrom(address(this), msg.sender, tokenId);
        }
        else{
         myNftContract.safeTransferFrom(address(this), msg.sender, tokenId, 1, "");
        }
-        idToMarketItem[itemId].nftOwner = msg.sender;
-        idToMarketItem[itemId].sold = true;
+        
         _itemsSold.increment();
     }
 
@@ -212,7 +220,10 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
             idToMarketItem[itemId].seller == msg.sender,
             "Caller not an owner of the market item"
         );
-        if(isERC721 == true){
+
+        idToMarketItem[itemId].nftOwner = msg.sender;
+        idToMarketItem[itemId].sold = true;
+        if(isERC721){
             nftContract = IERC721(idToMarketItem[itemId].nftAddress);        
             nftContract.safeTransferFrom(address(this), msg.sender, tokenId);
         }
@@ -220,8 +231,7 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
             myNftContract = IERC1155(idToMarketItem[itemId].nftAddress);        
             myNftContract.safeTransferFrom(address(this), msg.sender, tokenId, 1, "");
         }
-       idToMarketItem[itemId].nftOwner = msg.sender;
-        idToMarketItem[itemId].sold = true;
+       
         _itemsSold.increment();
     } 
 
@@ -314,7 +324,7 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
         }
         return items;
     }
-
+   
     function onERC721Received(address, address, uint256, bytes memory) public virtual returns (bytes4) {
         return this.onERC721Received.selector;
     }

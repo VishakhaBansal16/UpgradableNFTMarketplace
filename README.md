@@ -38,8 +38,9 @@ To run this project, you must have the following installed:
 
 - nodejs
 - npm
-
-Run npm install to install required dependencies.
+- Python3.6+ and solc (to install slither)
+- slither
+  Run npm install to install required dependencies.
 
 ```
 $ npm install
@@ -81,7 +82,7 @@ Run npx hardhat compile to compile all contracts.
 npx hardhat compile
 ```
 
-Run npx hardhat run scripts/deploy.js --network goerli to deploy contracts on network goerli.
+Run npx hardhat run scripts/deploy.js --network goerli to deploy nft contracts and marketplaace contract on network goerli.
 
 ```
 npx hardhat run scripts/deploy.js --network goerli
@@ -93,16 +94,25 @@ Run npx hardhat verify --network goerli <deployedContractAddress> to verify the 
 npx hardhat run verify --network goerli <deployedContractAddress>
 ```
 
-Run npx hardhat test for unit testing smart contract
+Run npx hardhat run scripts/deployV2.js --network goerli to deploy marketplaceV2 contract on network goerli.
 
 ```
-npx hardhat test
+npx hardhat run scripts/deployV2.js --network goerli
+```
+
+Run npx hardhat verify --network goerli <marketplaceV2Address> to verify the deployed marketplaceV2 contract on network goerli.
+
+```
+npx hardhat run verify --network goerli <marketplaceV2Address>
 ```
 
 NFT contract deployed to: 0x13e610834B02CF1b9e4F097c6D396eD2CC60D089
-MyNFT contract deployed to:0xB91Bb7E498CFf8a2D275C2c0196818a00708E3c9
-//Marketplace contract deployed to: 0x6A43505250b3788150ff152d92134bc790dba678
-//Proxy contract address is: 0x6eEfB26589dB41f3504449b3F7c0d1bC522dDb1b
+
+MyNFT contract deployed to: 0xB91Bb7E498CFf8a2D275C2c0196818a00708E3c9
+
+//Marketplace contract deployed to: 0x8bb7c7017f9c658191146e98da4bee46ffeddc70
+
+//Proxy contract address is: 0x7525ee280d545Aa7C70804c0E63af200Cbc2a8BD
 
 ## Testing
 
@@ -187,13 +197,47 @@ You will see a report as shown below-
 
 ## Slither
 
-You will see a report as shown below-
+The Slither framework provides automated vulnerability and optimization detection and analyse contracts.
 
-![slither report image](./images/slither-report.png?raw=true)
+Install Python0.3.9 and solc.
+
+Install slither using command-
+
+```
+pip3 install slither-analyzer
+```
+
+Run slither . to analyse contracts.
+
+```
+slither .
+
+```
 
 ## A Typical Top Level Directory
 
 ```
-
+UpgradableNFTMarketplace
+├─ .gitignore
+├─ artifacts
+├─ cache
+├─ contracts
+│  ├─ MyNFT.sol
+│  ├─ NFT.sol
+│  ├─ NFTMarketplace.sol
+│  └─ NFTMarketplaceV2.sol
+├─ hardhat.config.js
+├─ images
+├─ package-lock.json
+├─ package.json
+├─ README.md
+├─ scripts
+│  ├─ deploy.js
+│  └─ deployV2.js
+└─ test
+   ├─ MyNFT.js
+   ├─ NFT.js
+   ├─ NFTMarketplace.js
+   └─ NFTMarketplaceV2.js
 
 ```

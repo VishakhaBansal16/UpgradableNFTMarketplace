@@ -95,7 +95,7 @@ describe("MarketplaceV2", function () {
 
   it("Should return version of marketplace contract", async function () {
     expect(
-      await marketplaceV2.connect(seller).NFTMarketplaceVersion()
+      await marketplaceV2.connect(seller).nftMarketplaceVersion()
     ).to.equal(2);
   });
 
