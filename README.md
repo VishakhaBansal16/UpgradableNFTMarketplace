@@ -21,6 +21,7 @@ Create an upgradeable NFT marketplace.
    - Others can buy listed NFTs (By paying in terms of ETHERS/MATIC)
    - User can update the listed NFT's properties (Ex: price)
    - User can de-list their NFTs from marketplace
+   - Should set a platform fee i.e., 2.5% of nft price
 2. The marketplace contract must be proxy upgradeable (UUPS proxy standard)
 3. Write test-cases for the marketplace contract
 4. Perform solidity test-cases coverage (for checking all functions are being covered)
