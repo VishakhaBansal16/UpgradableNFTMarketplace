@@ -111,9 +111,11 @@ NFT contract deployed to: 0x13e610834B02CF1b9e4F097c6D396eD2CC60D089
 
 MyNFT contract deployed to: 0xB91Bb7E498CFf8a2D275C2c0196818a00708E3c9
 
-Marketplace contract deployed to: 0x8bb7c7017f9c658191146e98da4bee46ffeddc70
+Marketplace contract deployed to: 0xf9c700e09a6e5e027ab1fc823cb2bcf943d23658
 
-Proxy contract address is: 0x7525ee280d545Aa7C70804c0E63af200Cbc2a8BD
+Proxy contract address is: 0xd6906C327bAe1c73b38C2F307D42De625B98BbF7
+
+MarketplaceV2 contract deployed to: 0x1e0a7c09066b2c089e566715785240f50ecf2d72
 
 ## Testing
 

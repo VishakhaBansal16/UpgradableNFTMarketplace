@@ -1,6 +1,6 @@
 const { ethers, upgrades } = require("hardhat");
 
-const PROXY = "0x7525ee280d545Aa7C70804c0E63af200Cbc2a8BD";
+const PROXY = "0xd6906C327bAe1c73b38C2F307D42De625B98BbF7";
 
 async function main() {
   const NFTMarketplaceV2 = await ethers.getContractFactory("MarketplaceV2");

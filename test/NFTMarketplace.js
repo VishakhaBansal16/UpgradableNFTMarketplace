@@ -38,11 +38,14 @@ describe("Marketplace", function () {
       ],
       {
         initializer: "initialize",
+        kind: "uups",
+        unsafeAllow: ["constructor"],
       }
     );
     await marketplace.deployed();
     await nftContract.connect(seller).safeMint(seller.address, 0);
     await nftContract.connect(seller).approve(marketplace.address, 0);
+
     await marketplace
       .connect(seller)
       .createMarketItem(0, 100000000000000n, true);
@@ -77,6 +80,8 @@ describe("Marketplace", function () {
       ],
       {
         initializer: "initialize",
+        kind: "uups",
+        unsafeAllow: ["constructor"],
       }
     );
     await marketplace.deployed();

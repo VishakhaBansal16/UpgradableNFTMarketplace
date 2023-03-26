@@ -158,42 +158,6 @@
         "IERC1155Receiver"
       ]
     },
-    "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1679306905264,
-      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.8.8",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
       "lastModificationDate": 1679306905243,
       "contentHash": "f31ad6fc4bbf9c06203987220156a6ba",
@@ -228,6 +192,42 @@
       ],
       "artifacts": [
         "Address"
+      ]
+    },
+    "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1679306905264,
+      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
       ]
     },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
@@ -690,8 +690,8 @@
       ]
     },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\contracts\\NFTMarketplace.sol": {
-      "lastModificationDate": 1679657868735,
-      "contentHash": "0da092766230b2320270fe81d242bc91",
+      "lastModificationDate": 1679820949483,
+      "contentHash": "6171430adc56b3cf7e7114e02eea293c",
       "sourceName": "contracts/NFTMarketplace.sol",
       "solcConfig": {
         "version": "0.8.8",
@@ -735,44 +735,6 @@
         "Marketplace"
       ]
     },
-    "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\security\\ReentrancyGuardUpgradeable.sol": {
-      "lastModificationDate": 1679306521320,
-      "contentHash": "1453fc85149da6598faf08c46b88182d",
-      "sourceName": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.8",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../proxy/utils/Initializable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ReentrancyGuardUpgradeable"
-      ]
-    },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol": {
       "lastModificationDate": 1679306521284,
       "contentHash": "403ce8273abde646bff81558ddf512ad",
@@ -812,10 +774,10 @@
         "OwnableUpgradeable"
       ]
     },
-    "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1679306905267,
-      "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
-      "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
+    "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\security\\ReentrancyGuardUpgradeable.sol": {
+      "lastModificationDate": 1679306521320,
+      "contentHash": "1453fc85149da6598faf08c46b88182d",
+      "sourceName": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.8",
         "settings": {
@@ -840,12 +802,14 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "../proxy/utils/Initializable.sol"
+      ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "Counters"
+        "ReentrancyGuardUpgradeable"
       ]
     },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol": {
@@ -884,6 +848,42 @@
       ],
       "artifacts": [
         "Initializable"
+      ]
+    },
+    "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
+      "lastModificationDate": 1679306905267,
+      "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
+      "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
+      "solcConfig": {
+        "version": "0.8.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Counters"
       ]
     },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\utils\\UUPSUpgradeable.sol": {
@@ -926,42 +926,6 @@
         "UUPSUpgradeable"
       ]
     },
-    "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\AddressUpgradeable.sol": {
-      "lastModificationDate": 1679306519182,
-      "contentHash": "228f256dbb21393bc9ad02648e222f74",
-      "sourceName": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.8",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.1"
-      ],
-      "artifacts": [
-        "AddressUpgradeable"
-      ]
-    },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol": {
       "lastModificationDate": 1679306519426,
       "contentHash": "6200b84950eb05b4a92a39fd1d6e0f9b",
@@ -998,6 +962,42 @@
       ],
       "artifacts": [
         "ContextUpgradeable"
+      ]
+    },
+    "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\AddressUpgradeable.sol": {
+      "lastModificationDate": 1679306519182,
+      "contentHash": "228f256dbb21393bc9ad02648e222f74",
+      "sourceName": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.1"
+      ],
+      "artifacts": [
+        "AddressUpgradeable"
       ]
     },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\node_modules\\@openzeppelin\\contracts-upgradeable\\interfaces\\draft-IERC1822Upgradeable.sol": {
@@ -1151,7 +1151,7 @@
       ]
     },
     "C:\\Users\\EXPERT\\OneDrive\\Desktop\\UpgradableNFTMarketplace\\contracts\\NFTMarketplaceV2.sol": {
-      "lastModificationDate": 1679657147716,
+      "lastModificationDate": 1679813635913,
       "contentHash": "38d051371caa326e04843b14f92712f3",
       "sourceName": "contracts/NFTMarketplaceV2.sol",
       "solcConfig": {

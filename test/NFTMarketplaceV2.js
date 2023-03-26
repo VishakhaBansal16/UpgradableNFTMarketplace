@@ -38,6 +38,8 @@ describe("MarketplaceV2", function () {
       ],
       {
         initializer: "initialize",
+        kind: "uups",
+        unsafeAllow: ["constructor"],
       }
     );
     await marketplace.deployed();
@@ -80,6 +82,8 @@ describe("MarketplaceV2", function () {
       ],
       {
         initializer: "initialize",
+        kind: "uups",
+        unsafeAllow: ["constructor"],
       }
     );
     await marketplace.deployed();

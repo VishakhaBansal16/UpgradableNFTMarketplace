@@ -51,9 +51,7 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
         uint256 totalPrice,
         bool sold
     );
-    
-    constructor() initializer {}
-    
+
     function initialize(address nftContractAddress, address myNftContractAddress,address platformWalletAddress, uint256 platformFees) public initializer {
         require(platformWalletAddress != address(0), "Invalid address");
         nftContract = IERC721(nftContractAddress);
@@ -63,6 +61,9 @@ contract Marketplace is Initializable, OwnableUpgradeable, UUPSUpgradeable, Reen
        __Ownable_init();
        __ReentrancyGuard_init();
     }
+
+   
+    
 
    function _authorizeUpgrade(address newImplementation)
         internal
